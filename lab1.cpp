@@ -83,3 +83,55 @@ int main()
 
 }
 
+//lab 1.3
+#include<bits/stdc++.h>
+using namespace std;
+void Jump_search(int arr[],int n,int key)
+{
+    int st=0;
+    int i=0,comparisons=0;
+    int fl=0;
+    int End=pow(2,i);
+    while(arr[End]<=key && End<n)
+    {
+        ++comparisons;
+        st=End;
+        ++i;
+        End=pow(2,i);
+        if(End>n-1)
+            End=n;
+
+    }
+    for(int j=st;j<End;j++)
+    {
+        if(arr[j]==key)
+        {
+            fl=true;
+            break;
+        }
+    }
+    if(fl)
+        cout<<"Present "<<comparisons<<endl;
+        else
+            cout<<"Not Present "<<comparisons<<endl;
+}
+int main()
+{
+    int T;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        int n;
+        cin>>n;
+        int arr[n];
+        for(int i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        int val;
+        cin>>val;
+        Jump_search(arr,n,val);
+
+    }
+    return 0;
+}
