@@ -18,3 +18,58 @@ The output will have T number of lines.
 For each test case, output will be “Present” if the key element is found in the array, otherwise 
 “Not Present”. 
 Also, for each test case output the number of comparisons required to search the key.*/
+#include <bits/stdc++.h>
+using namespace std;
+int Jump_search(int arr[],int n,int val)
+{
+    int low;
+    int c=0;
+   int jmp=sqrt(n);
+   for(int i=0;i<n;i+=jmp)
+   {
+       c++;
+       if(arr[i]==val)
+            return c;
+
+       if(arr[i]<val)
+          low=i;
+    
+        if(arr[i]>val)
+              break;
+   }
+   for(int i=low;i<n;i++)
+   {
+       if(arr[i]==val)
+       {
+           c++;
+            return c;
+       }
+   }
+   return -1;
+}
+int main()
+{
+    int T;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        int n;
+        cin>>n;
+        int arr[n];
+        for(int i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        int val;
+        cin>>val;
+        int m;
+        m=Jump_search(arr,n,val);
+        if(m==-1)
+        cout<<"Not Present "<<endl;
+        else
+            cout<<"Present "<<m<<endl;
+    }
+    return 0;
+
+}
+
